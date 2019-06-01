@@ -50,7 +50,7 @@ int main(){
     head_prenot = importa_prenot(mes);
 
     do{
-        printf("%s\n%s\n%s\n%s\n%s\n",
+        printf("%s\n%s\n%s\n%s\n",
                "Menu",
                "1.Inserire prenotazione",
                "2.Tavoli disponibili",

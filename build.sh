@@ -1,2 +1,4 @@
 #!/bin/sh
-peppe/build.sh
+cd peppe
+./build.sh
+cd ..
