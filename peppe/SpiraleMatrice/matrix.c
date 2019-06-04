@@ -2,7 +2,7 @@
 #include "math.h"
 #include <stdio.h>
 #include <stdlib.h>
-
+                                    //  0     1     2     3
 static const int inc_vectors[4][2] = {{0,1},{1,0},{0,-1},{-1,0}};
 
 void print_matrix_spiral(Matrix in, unsigned order)
@@ -13,35 +13,52 @@ void print_matrix_spiral(Matrix in, unsigned order)
     short current_inc;
     long row_top_limit = -1, col_left_limit = -1;
     long row_bottom_limit = order, col_right_limit = order;
+    int row_increment = 0, col_increment = 1;
     while(1)
     {
-        if(!((row > row_top_limit) && (row < row_bottom_limit 
-)) ||
+        if(!((row > row_top_limit) && (row < row_bottom_limit)) ||
             !((col > col_left_limit) && (col < col_right_limit)))
         {
-            row -= inc_vectors[current_inc][0];
-            col -= inc_vectors[current_inc][1];
+            row -= row_increment;
+            col -= col_increment;
             
-            if(inc_vectors[current_inc][1] > 0)
+            if(col_increment > 0)
                 row_top_limit++;
-            else if(inc_vectors[current_inc][1] < 0)
+            else if(col_increment < 0)
                 row_bottom_limit--;
-            else if(inc_vectors[current_inc][0] > 0)
+            else if(row_increment > 0)
                 col_right_limit--;
-            else if(inc_vectors[current_inc][0] < 0)
+            else if(row_increment < 0)
                 col_left_limit++;
 
             turns++;
             current_inc = turns % 4;
-            row += inc_vectors[current_inc][0];
-            col += inc_vectors[current_inc][1];
+            if(current_inc % 2)
+            {
+                col_increment = 0;
+                if(current_inc < 2)
+                    row_increment = 1;
+                else
+                    row_increment = -1;
+            }
+            else
+            {
+                row_increment = 0;
+                if(current_inc < 2)
+                    col_increment = 1;
+                else
+                    col_increment = -1;
+            }
+            
+            row += row_increment;
+            col += col_increment;
         }
 
         if(turns >= max_turns) break;
 
         printf("%lf %d %d\n", in[row][col], row, col);
-        row += inc_vectors[current_inc][0];
-        col += inc_vectors[current_inc][1];
+        row += row_increment;
+        col += col_increment;
     }
     printf("\n");
 }

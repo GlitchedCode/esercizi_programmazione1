@@ -2,10 +2,10 @@
 #define CALENDARIO_H
 // Usiamo queste stringhe per presentare in maniera più leggibile l'output su file 
 // e su terminale
-static const char* mese_str[] = {"Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", 
-                        "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"};
+#define mese_str (char*[12]){"Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", \
+                        "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"}
 
-static const char* apertura_str[] = { "Chiuso", "Aperto" }; 
+#define apertura_str (char*[12]){ "Chiuso", "Aperto" } 
 
 // Giorni in ogni mese
 static const int mese_count[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 31, 31};
