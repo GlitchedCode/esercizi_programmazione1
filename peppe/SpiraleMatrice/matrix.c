@@ -92,7 +92,7 @@ void fill_vandermonde_ab(Matrix in, unsigned order, double a, double b)
     if (order < 2)
         return;
 
-    step = (b - a) / order;
+    step = (b - a) / (order-1);
 
     for(row = 0; row < order; row++)
     {
