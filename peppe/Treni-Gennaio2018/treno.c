@@ -130,7 +130,7 @@ unsigned stampa_carrozza(Carrozza *c)
     unsigned postiLiberi = 0;
     for(unsigned row = 0; row < FILE_PER_CARROZZA; row++)
     {
-        printf("%d", row + 1);
+        printf("%2u", row + 1);
         for(unsigned short seat = 0; seat < 4; seat++)
         {
             if(!(seat % 2)) printf(" ");
@@ -171,7 +171,7 @@ unsigned prenota_posto(Treno *t, TipoPosto tipo, int *_row, int *_seat)
         return 0;
     }
 
-    *_row = *_seat = 0;
+    *_row = *_seat = -1;
 
     for(c = 0; c < t->nCarrozze; c++)
     {
@@ -191,27 +191,30 @@ unsigned prenota_posto(Treno *t, TipoPosto tipo, int *_row, int *_seat)
                     {
                         *_row = row + 1;
                         *_seat = seat + 1;
+                        break;
                     }
-                    break;
+                    else continue;
                 case FINESTRINO:
                     if(seat < 1 || seat > 2)
                     {
                         *_row = row + 1;
                         *_seat = seat + 1;
+                        break;
                     }
-                    break;
+                    else continue;
                 default:
                     *_row = row + 1;
                     *_seat = seat + 1;
                     break;
                 }
+                if(row != -1) break;
             }
-            if(row != 0) break;
+            if(row != -1) break;
         }
-        if(row != 0) break;
+        if(row != -1) break;
     }
 
-    if(row == 0)
+    if(row == -1)
     {
         fprintf(stderr, "Siamo spiacenti, non è stato possibile trovare un posto con la configurazione richiesta.\n");
         return 0;
@@ -219,7 +222,7 @@ unsigned prenota_posto(Treno *t, TipoPosto tipo, int *_row, int *_seat)
 
     (*tcarrozza)[row][seat] = id;
 
-    printf("Carrozza %d, Fila %d, Posto %d", c + 1, row + 1, seat + 1);
+    printf("Carrozza %d, Fila %d, Posto %d\n", c + 1, row + 1, seat + 1);
     return id;
 }
 

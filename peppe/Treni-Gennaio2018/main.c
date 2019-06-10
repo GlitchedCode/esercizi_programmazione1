@@ -38,7 +38,7 @@ int main()
             printf("1. Corridoio\n2. Finestrino\n");
             scanf("%u", &choice);
             result = prenota_posto(temp, choice, &row, &seat);
-            if(result) printf("ID prenotazione: %u", result);
+            if(result) printf("ID prenotazione: %u\n", result);
             choice = 2;
             break;
         case 3:
