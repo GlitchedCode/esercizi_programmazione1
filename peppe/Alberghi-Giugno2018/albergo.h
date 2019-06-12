@@ -7,8 +7,8 @@
 struct Albergo
 {
     char nome[MAX_NOME_ALBERGO + 1];
-    unsigned short stelle;
-    unsigned short nServizi;
+    unsigned  stelle;
+    unsigned  nServizi;
     char** servizi;
     struct Albergo *next;
 };
@@ -22,6 +22,7 @@ int save_to_file(ListaAlberghi head, char* filename);
 void destroy_alberghi(ListaAlberghi head);
 
 // Controllo dei dati della lista
+void print_all(ListaAlberghi head);
 void insert_albergo(ListaAlberghi *head, char *nome, unsigned short stelle, 
     unsigned short nServizi, char **servizi);
 void query_alberghi(ListaAlberghi head, unsigned short stelle, char *servizio);
